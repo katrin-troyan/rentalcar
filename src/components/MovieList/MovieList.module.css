@@ -1,0 +1,32 @@
+.movieList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media screen and (min-width: 768px) {
+  .movieList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+  }
+}
+.movieItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  align-items: center;
+}
+.movieTitle {
+  font-weight: 600;
+  font-size: 18px;
+}
+.movieTitle:hover {
+  text-decoration: underline;
+}
+.poster {
+  border-radius: 20px;
+  width: 256px;
+  height: 384px;
+}
