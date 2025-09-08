@@ -10,14 +10,14 @@ import {
   setPrice,
   setMileageFrom,
   setMileageTo,
-} from '../../redux/filters/filtersSlice';
+} from '../../redux/filters/slice';
 import { fetchCars } from '../../redux/cars/operations';
-import { selectBrands } from '../../redux/cars/slice';
+import { selectBrands } from '../../redux/cars/selectors';
 
-import { formatMileage, parseNumberInput } from '../../utils/format';
+import { formatMileage, parseNumberInput } from '../../utils/number';
 import { PRICE_OPTIONS } from '../../utils/constants';
 
-import css from './Filters.module.css';
+
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function Filters() {
   };
 
   return (
-    <div className={css.filters}>
+    <div >
       <select value={brand} onChange={e => dispatch(setBrand(e.target.value))}>
         <option value="">Choose a brand</option>
         {brands.map(b => (
@@ -55,7 +55,7 @@ export default function Filters() {
         ))}
       </select>
 
-      <div className={css.mileage}>
+      <div >
         <input
           type="number"
           placeholder="From"
