@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchCars, fetchCarById } from "./operations";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCars, fetchCarById, fetchBrands } from './operations';
 
 const initialState = {
   cars: [],
@@ -8,13 +8,18 @@ const initialState = {
   page: 1,
   isLoading: false,
   error: null,
+
   carDetails: null,
   isCarDetailsLoading: false,
   carDetailsError: null,
+
+  brands: [],
+  isLoadingBrands: false,
+  brandsError: null,
 };
 
 const carsSlice = createSlice({
-  name: "cars",
+  name: 'cars',
   initialState,
   reducers: {
     clearCarDetails(state) {
@@ -23,11 +28,14 @@ const carsSlice = createSlice({
       state.isCarDetailsLoading = false;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchCars.pending, (state) => {
+      .addCase(fetchCars.pending, state => {
         state.isLoading = true;
         state.error = null;
+        state.cars = [];
+        state.totalCars = 0;
+        state.totalPages = 0;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -41,8 +49,7 @@ const carsSlice = createSlice({
         state.error = action.payload;
       })
 
-
-      .addCase(fetchCarById.pending, (state) => {
+      .addCase(fetchCarById.pending, state => {
         state.isCarDetailsLoading = true;
         state.carDetailsError = null;
       })
@@ -53,6 +60,19 @@ const carsSlice = createSlice({
       .addCase(fetchCarById.rejected, (state, action) => {
         state.isCarDetailsLoading = false;
         state.carDetailsError = action.payload;
+      })
+
+      .addCase(fetchBrands.pending, state => {
+        state.isLoadingBrands = true;
+        state.brandsError = null;
+      })
+      .addCase(fetchBrands.fulfilled, (state, action) => {
+        state.isLoadingBrands = false;
+        state.brands = action.payload;
+      })
+      .addCase(fetchBrands.rejected, (state, action) => {
+        state.isLoadingBrands = false;
+        state.brandsError = action.payload;
       });
   },
 });

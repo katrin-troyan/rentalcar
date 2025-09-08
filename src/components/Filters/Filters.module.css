@@ -1,0 +1,24 @@
+import css from "./Filters.module.css";
+
+export default function Filters() {
+  return (
+    <div className={css.filters}>
+      <select>
+        <option value="">Choose a brand</option>
+        {/* Опції брендів */}
+      </select>
+
+      <select>
+        <option value="">Choose a price</option>
+        {/* Опції цін */}
+      </select>
+
+      <div>
+        <input type="number" placeholder="Mileage from" />
+        <input type="number" placeholder="Mileage to" />
+      </div>
+
+      <button>Search</button>
+    </div>
+  );
+}

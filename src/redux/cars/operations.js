@@ -35,3 +35,15 @@ export const fetchCarById = createAsyncThunk(
     }
   }
 );
+
+export const fetchBrands = createAsyncThunk(
+  "cars/fetchBrands",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await apiClient.get("/brands");
+      return data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
