@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectBrand,
@@ -11,13 +12,12 @@ import {
   setMileageFrom,
   setMileageTo,
 } from '../../redux/filters/slice';
-import { fetchCars } from '../../redux/cars/operations';
+import { fetchCars, fetchBrands } from '../../redux/cars/operations';
 import { selectBrands } from '../../redux/cars/selectors';
 
-import { formatMileage, parseNumberInput } from '../../utils/number';
-import { PRICE_OPTIONS } from '../../utils/constants';
-
-
+import BrandSelect from '../../components/BrandSelect/BrandSelect';
+import PriceSelect from '../../components/PriceSelect/PriceSelect';
+import MileageSelect from '../../components/MileageSelect/MileageSelect';
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -29,6 +29,10 @@ export default function Filters() {
 
   const brands = useSelector(selectBrands);
 
+  useEffect(() => {
+    dispatch(fetchBrands());
+  }, [dispatch]);
+
   const handleSearch = () => {
     dispatch(
       fetchCars({ brand, price, mileageFrom, mileageTo, page: 1, limit: 12 })
@@ -36,43 +40,17 @@ export default function Filters() {
   };
 
   return (
-    <div >
-      <select value={brand} onChange={e => dispatch(setBrand(e.target.value))}>
-        <option value="">Choose a brand</option>
-        {brands.map(b => (
-          <option key={b} value={b}>
-            {b}
-          </option>
-        ))}
-      </select>
+    <div>
+      <BrandSelect value={brand} onChange={b => dispatch(setBrand(b))} />
 
-      <select value={price} onChange={e => dispatch(setPrice(e.target.value))}>
-        <option value="">Choose a price</option>
-        {PRICE_OPTIONS.map(p => (
-          <option key={p} value={p}>
-            To ${p}
-          </option>
-        ))}
-      </select>
-
-      <div >
-        <input
-          type="number"
-          placeholder="From"
-          value={mileageFrom ? formatMileage(mileageFrom) : ''}
-          onChange={e =>
-            dispatch(setMileageFrom(parseNumberInput(e.target.value)))
-          }
-        />
-        <input
-          type="number"
-          placeholder="To"
-          value={mileageTo ? formatMileage(mileageTo) : ''}
-          onChange={e =>
-            dispatch(setMileageTo(parseNumberInput(e.target.value)))
-          }
-        />
-      </div>
+      <PriceSelect value={price} onChange={p => dispatch(setPrice(p))} />
+        
+       <MileageSelect
+        fromValue={mileageFrom}
+        toValue={mileageTo}
+        onFromChange={v => dispatch(setMileageFrom(v))}
+        onToChange={v => dispatch(setMileageTo(v))}
+      />
 
       <button onClick={handleSearch}>Search</button>
     </div>

@@ -18,7 +18,7 @@ export const fetchCars = createAsyncThunk(
       const data = await apiClient.get("/cars", { params });
       return data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -31,7 +31,7 @@ export const fetchCarById = createAsyncThunk(
       const data = await apiClient.get(`/cars/${id}`);
       return data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -40,10 +40,10 @@ export const fetchBrands = createAsyncThunk(
   "cars/fetchBrands",
   async (_, thunkAPI) => {
     try {
-      const { data } = await apiClient.get("/brands");
-      return data; 
+      const brands = await apiClient.get("/brands");
+      return brands; 
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

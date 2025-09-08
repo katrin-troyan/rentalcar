@@ -23,14 +23,8 @@ const filtersSlice = createSlice({
     setMileageTo(state, action) {
       state.mileageTo = action.payload;
     },
-    resetFilters(state) {
-      state.brand = "";
-      state.price = "";
-      state.mileageFrom = "";
-      state.mileageTo = "";
-    },
   },
 });
 
-export const { setBrand, setPrice, setMileageFrom, setMileageTo, resetFilters } = filtersSlice.actions;
+export const { setBrand, setPrice, setMileageFrom, setMileageTo } = filtersSlice.actions;
 export default filtersSlice.reducer;
