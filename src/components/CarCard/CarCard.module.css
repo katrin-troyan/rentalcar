@@ -1,0 +1,107 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 276px;
+  height: 424px;
+}
+
+.imageWrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.image {
+  border-radius: 14px;
+  width: 276px;
+  height: 268px;
+  object-fit: cover;
+}
+
+.saveIcon {
+  fill: none;
+  stroke: #f2f4f7;
+}
+
+.unsaveIcon {
+  fill: #3470ff;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.content {
+  width: 276px;
+  height: 68px;
+  margin-bottom: 28px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-main);
+}
+.span {
+  color: var(--color-button);
+}
+
+.price {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-main);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--color-gray);
+  margin-bottom: 4px;
+}
+.details:last-child {
+  margin-bottom: 0;
+}
+.details li {
+  border-right: 1px solid #ddd;
+  padding-right: 8px;
+}
+
+.details li:last-child {
+  border-right: none;
+}
+
+.readMoreBtn {
+  border-radius: 12px;
+padding: 12px 99px;
+width: 276px;
+height: 44px;
+background: var(--color-button);
+font-weight: 600;
+font-size: 16px;
+line-height: 125%;
+color: var(--color-white);
+white-space: nowrap;
+  cursor: pointer;
+}
+
+.readMoreBtn:hover, .readMoreBtn:focus {
+  background-color: var(--button-hover);
+}

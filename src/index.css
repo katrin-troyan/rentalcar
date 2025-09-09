@@ -1,11 +1,45 @@
-body {
-  font-family: 'Cascadia Code', monospace;
-  background: #c31432;
-  background: -webkit-linear-gradient(to right, #240b36, #c31432);
-  background: linear-gradient(to right, #240b36, #c31432);
-  color: #fff;
+:root {
+--font-family: "Manrope", sans-serif;
+--color-main: #101828;
+--color-white: #ffffff;
+--color-gray: #8D929A;
+--color-badges: #F2F4F7;
+--color-button: #3470FF;
+--button-hover: #0B44CD;
+--color-inputs: #F7F7F7
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-main);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
 p,
 h1,
 h2,
@@ -30,3 +64,4 @@ img {
   max-width: 100%;
   height: auto;
 }
+

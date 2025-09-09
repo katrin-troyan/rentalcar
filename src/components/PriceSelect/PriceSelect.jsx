@@ -5,6 +5,8 @@ export default function PriceSelect({ value, onChange }) {
   const options = priceOptions.map(p => ({ value: p, label: formatPrice(p).listLabel }));
 
   return (
+    <div>
+      <label >Price/ 1 hour</label>
     <Select
       options={options}
       value={value ? { value: value, label: formatPrice(value).selectedLabel } : null}
@@ -14,5 +16,6 @@ export default function PriceSelect({ value, onChange }) {
       getOptionLabel={(option) => option.label} 
       getOptionValue={(option) => option.value}
     />
+    </div>
   );
 }

@@ -2,6 +2,7 @@ export const selectCars = (state) => state.cars.cars;
 export const selectTotalCars = (state) => state.cars.totalCars;
 export const selectTotalPages = (state) => state.cars.totalPages;
 export const selectCurrentPage = (state) => state.cars.page;
+export const selectIsLastPage = (state) => state.cars.isLastPage
 export const selectIsLoadingCars = (state) => state.cars.isLoading;
 export const selectCarsError = (state) => state.cars.error;
 

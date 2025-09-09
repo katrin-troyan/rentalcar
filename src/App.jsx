@@ -1,7 +1,5 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-
 import Layout from './components/Layout/Layout';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -22,6 +20,6 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
-    </>
+      </>
   );
 }

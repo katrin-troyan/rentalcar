@@ -1,9 +1,14 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCars } from "../../redux/cars/operations";
-import { selectCars, selectIsLoadingCars, selectCarsError } from "../../redux/cars/selectors";
-import CarCard from "../CarCard/CarCard";
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCars } from '../../redux/cars/operations';
+import {
+  selectCars,
+  selectIsLoadingCars,
+  selectCarsError,
+} from '../../redux/cars/selectors';
+import CarCard from '../CarCard/CarCard';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
+import css from './CarList.module.css';
 
 export default function CarList() {
   const dispatch = useDispatch();
@@ -12,19 +17,22 @@ export default function CarList() {
   const isLoading = useSelector(selectIsLoadingCars);
   const error = useSelector(selectCarsError);
 
-  useEffect(() => {
-    dispatch(fetchCars({}));
+useEffect(() => {
+    if (cars.length === 0) {
+      dispatch(fetchCars({ page: 1 }));
+    }
   }, [dispatch]);
 
   if (isLoading) return <p>Loading cars...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!cars || cars.length === 0) return <p>No cars found.</p>;
-
+  
   return (
-    <div >
+    <div className={css.carList}>
       {cars.map(car => (
         <CarCard key={car.id} car={car} />
       ))}
+      <LoadMoreBtn />
     </div>
   );
 }

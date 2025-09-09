@@ -33,7 +33,8 @@ export default function MileageSelect() {
   };
 
   return (
-    <div >
+    <div>
+      <label >Сar mileage / km</label>
       <div >
         <span>From</span>
         <input

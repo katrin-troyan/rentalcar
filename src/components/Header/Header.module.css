@@ -1,8 +1,40 @@
-.link {
-  text-decoration: none;
-  color: black;
+.header {
+  background: var(--color-badges);
+  border-bottom: 1px solid var(--color-badges);
+  padding: 0 120px;
+}
+.header.home {
+  margin: 72px 0 80px;
 }
 
+.header.other {
+  margin: 0 0 84px;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  padding: 24px 0;
+}
+.nav {
+  display: flex;
+  gap: 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+}
+.link {
+  text-decoration: none;
+  display: block;
+  padding: 24px 0;
+}
 .active {
-  color: red;
+  color: var(--button-hover);
+  display: block;
+  padding: 24px 0;
 }

@@ -18,6 +18,7 @@ import { selectBrands } from '../../redux/cars/selectors';
 import BrandSelect from '../../components/BrandSelect/BrandSelect';
 import PriceSelect from '../../components/PriceSelect/PriceSelect';
 import MileageSelect from '../../components/MileageSelect/MileageSelect';
+import css from './Filters.module.css';
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export default function Filters() {
   };
 
   return (
-    <div>
+    <div className={css.filters}>
       <BrandSelect value={brand} onChange={b => dispatch(setBrand(b))} />
 
       <PriceSelect value={price} onChange={p => dispatch(setPrice(p))} />
@@ -52,7 +53,7 @@ export default function Filters() {
         onToChange={v => dispatch(setMileageTo(v))}
       />
 
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} className={css.btn}>Search</button>
     </div>
   );
 }

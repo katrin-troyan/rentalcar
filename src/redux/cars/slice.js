@@ -6,6 +6,7 @@ const initialState = {
   totalCars: 0,
   totalPages: 0,
   page: 1,
+  isLastPage: false,
   isLoading: false,
   error: null,
 
@@ -22,28 +23,32 @@ const carsSlice = createSlice({
   name: 'cars',
   initialState,
   reducers: {
-    clearCarDetails(state) {
-      state.carDetails = null;
-      state.carDetailsError = null;
-      state.isCarDetailsLoading = false;
+    clearCars(state) {
+      state.cars = [];
+      state.page = 1;
+      state.isLastPage = false;
+      state.error = null;
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchCars.pending, state => {
+      .addCase(fetchCars.pending, (state, action) => {
         state.isLoading = true;
         state.error = null;
-        state.cars = [];
-        state.totalCars = 0;
-        state.totalPages = 0;
+  
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
-        state.isLoading = false;
+      state.isLoading = false;
+      if (action.meta.arg.page === 1) {
         state.cars = action.payload.cars;
-        state.totalCars = action.payload.totalCars;
-        state.totalPages = action.payload.totalPages;
-        state.page = action.payload.page;
-      })
+      } else {
+        state.cars = [...state.cars, ...action.payload.cars];
+      }
+      state.totalCars = action.payload.totalCars;
+      state.totalPages = action.payload.totalPages;
+      state.page = action.payload.page; 
+      state.isLastPage = action.payload.cars.length < 12;
+    })
       .addCase(fetchCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
@@ -77,5 +82,5 @@ const carsSlice = createSlice({
   },
 });
 
-export const { clearCarDetails } = carsSlice.actions;
+export const { clearCars } = carsSlice.actions;
 export default carsSlice.reducer;
