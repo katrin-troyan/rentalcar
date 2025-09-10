@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../../redux/favorites/slice';
 import { selectIsFavorite } from '../../redux/favorites/selectors';
+import { formatAddress } from "../../utils/formatAddress";
+import { formatMileage } from "../../utils/formatMileage";
 import css from './CarCard.module.css';
 
 export default function CarCard({ car }) {
@@ -28,11 +30,11 @@ export default function CarCard({ car }) {
       dispatch(addFavorite(car));
     }
   };
-const formattedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
-  const addressParts = address.split(',');
-  const city = addressParts[1]?.trim();
-  const country = addressParts[2]?.trim();
+  const formattedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+
+  const { city, country } = formatAddress(address);
+  const mileageStr = formatMileage(mileage);
 
   return (
     <div className={css.card}>
@@ -69,7 +71,7 @@ const formattedType = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()
           </ul>
           <ul className={css.details}>
             <li>{formattedType}</li>
-            <li>{new Intl.NumberFormat('uk-UA').format(mileage)} km</li>
+            <li>{mileageStr}</li>
           </ul>
         </div>
       </div>

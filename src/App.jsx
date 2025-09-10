@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Layout from './components/Layout/Layout';
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const Catalog = lazy(() => import('./pages/Catalog/Catalog'));
-const CarDetails = lazy(() => import('./pages/CarDetails/CarDetails'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
+const Catalog = lazy(() => import('./pages/Catalog/Catalog.jsx'));
+const CarDetails = lazy(() => import('./pages/CarDetails/CarDetails.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 export default function App() {
