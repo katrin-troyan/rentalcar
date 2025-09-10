@@ -5,6 +5,7 @@ import {
   selectCars,
   selectIsLoadingCars,
   selectCarsError,
+  selectHasFilter,
 } from '../../redux/cars/selectors';
 import CarCard from '../CarCard/CarCard';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
@@ -16,12 +17,13 @@ export default function CarList() {
   const cars = useSelector(selectCars);
   const isLoading = useSelector(selectIsLoadingCars);
   const error = useSelector(selectCarsError);
+  const hasFilter = useSelector(selectHasFilter);
 
   useEffect(() => {
-    if (cars.length === 0) {
+    if (cars.length === 0 && !hasFilter) {
       dispatch(fetchCars({ page: 1 }));
     }
-  }, [dispatch, cars.length]);
+  }, [dispatch, cars.length, hasFilter]);
 
   if (cars.length === 0 && isLoading) {
     return <p>Loading cars...</p>;

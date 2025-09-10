@@ -3,12 +3,20 @@ import apiClient from '../../api/apiClient';
 
 export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
-  async ({ page = 1, limit = 12 }, thunkAPI) => {
+  async (
+    { brand, price, mileageFrom, mileageTo, page = 1, limit = 12 },
+    thunkAPI
+  ) => {
     try {
       const params = {
         page,
         limit,
       };
+      if (brand) params.brand = brand;
+      if (price) params.rentalPrice = price;       
+      if (mileageFrom) params.minMileage = mileageFrom; 
+      if (mileageTo) params.maxMileage = mileageTo;
+
       const data = await apiClient.get('/cars', { params });
       return data;
     } catch (error) {

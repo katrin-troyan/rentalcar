@@ -17,6 +17,8 @@ const initialState = {
   brands: [],
   isLoadingBrands: false,
   brandsError: null,
+
+  hasFilter: false,
 };
 
 const carsSlice = createSlice({
@@ -37,21 +39,29 @@ const carsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
-      state.isLoading = false;
-      if (action.meta.arg.page === 1) {
-        state.cars = action.payload.cars;
-      } else {
-        state.cars = [...state.cars, ...action.payload.cars];
-        state.page = state.page + 1;
-      }
-      state.totalCars = action.payload.totalCars;
-      state.totalPages = action.payload.totalPages;
-      state.isLastPage = action.payload.cars.length < 12;
-    })
+        state.isLoading = false;
+        const { brand, price, mileageFrom, mileageTo, page } = action.meta.arg;
+        const isFiltered = brand || price || mileageFrom || mileageTo;
+        state.hasFilter = Boolean(isFiltered);
+        if (isFiltered) {
+          state.cars = action.payload.cars;
+        } else {
+          if (page === 1) {
+            state.cars = action.payload.cars;
+          } else {
+            state.cars = [...state.cars, ...action.payload.cars];
+          }
+        }
+        state.page = page;
+        state.totalCars = action.payload.totalCars;
+        state.totalPages = action.payload.totalPages;
+        state.isLastPage = action.payload.cars.length < action.meta.arg.limit;
+      })
       .addCase(fetchCars.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
+
 
       .addCase(fetchCarById.pending, state => {
         state.isCarDetailsLoading = true;
@@ -66,6 +76,7 @@ const carsSlice = createSlice({
         state.carDetailsError = action.payload;
       })
 
+      
       .addCase(fetchBrands.pending, state => {
         state.isLoadingBrands = true;
         state.brandsError = null;

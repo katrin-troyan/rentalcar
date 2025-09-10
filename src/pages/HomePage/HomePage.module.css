@@ -1,58 +1,57 @@
-.container{
+.container {
   display: flex;
-  align-items: flex-end; 
+  align-items: flex-end;
   justify-content: center;
-  background-image: url('../../assets/images/Hero.jpg'); 
-  background-size: cover;      
-  background-position: center; 
+  background-image: url('../../assets/images/Hero.jpg');
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  width: 100%;                
-  min-height: 100%; 
-   
+  width: 100%;
+  min-height: 100%;
 }
-.wrapper{
+.wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-   max-width: 1440px;
-  padding: 0 328px ;
-   margin-bottom: 5.5%;
-
+  max-width: 1440px;
+  padding: 0 328px;
+  margin-bottom: 5.5%;
 }
-.title{
-font-weight: 700;
-font-size: 60px;
-line-height: 120%;
-text-align: center;
-color: var(--color-white);
-margin-bottom: 16px;
+.title {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: 16px;
 }
-.text{
+.text {
   font-weight: 600;
-font-size: 24px;
-line-height: 133%;
-text-align: center;
-color: var(--color-white);
-margin-bottom: 40px;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: 40px;
 }
 .button {
-   display: flex;
-  justify-content: center; 
-  align-items: center;  
-border-radius: 12px;
-padding: 12px 99px;
-width: 276px;
-height: 44px;
-background: var(--color-button);
-font-weight: 600;
-font-size: 16px;
-line-height: 125%;
-text-align: center;
-color: var(--color-white);
-white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  padding: 12px 99px;
+  width: 276px;
+  height: 44px;
+  background: var(--color-button);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: var(--color-white);
+  white-space: nowrap;
   cursor: pointer;
 }
-.button:hover, .button:focus {
+.button:hover,
+.button:focus {
   background-color: var(--button-hover);
 }
