@@ -1,35 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCars } from '../../redux/cars/operations';
-import {
-  selectCars,
-  selectIsLoadingCars,
-  selectCarsError,
-  selectHasFilter,
-} from '../../redux/cars/selectors';
 import CarCard from '../CarCard/CarCard';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
+import Loader from '../Loader/Loader';
 import css from './CarList.module.css';
+import { useCars } from '../../hooks/useCars';
 
 export default function CarList() {
-  const dispatch = useDispatch();
+  const { cars, isLoading } = useCars();
 
-  const cars = useSelector(selectCars);
-  const isLoading = useSelector(selectIsLoadingCars);
-  const error = useSelector(selectCarsError);
-  const hasFilter = useSelector(selectHasFilter);
-
-  useEffect(() => {
-    if (cars.length === 0 && !hasFilter) {
-      dispatch(fetchCars({ page: 1 }));
-    }
-  }, [dispatch, cars.length, hasFilter]);
-
-  if (cars.length === 0 && isLoading) {
-    return <p>Loading cars...</p>;
-  }
-  if (error) return <p>Error: {error}</p>;
-  if (!cars || cars.length === 0) return <p>No cars found.</p>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className={css.container}>
