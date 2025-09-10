@@ -1,12 +1,12 @@
 import CarInfo from '../../components/CarInfo/CarInfo.jsx';
 import BookingForm from '../../components/BookingForm/BookingForm.jsx';
-import Loader from '../Loader/Loader';
+import Loader from '../../components/Loader/Loader.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useCarDetails } from '../../hooks/useCarDetails.js';
 import css from './CarDetails.module.css';
 
-export default function CarDetailsPage() {
+export default function CarDetails() {
   const { car, isLoading, error } = useCarDetails();
 
   if (isLoading) return <Loader />;
