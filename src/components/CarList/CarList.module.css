@@ -1,9 +1,10 @@
+.container{
+  max-width: 1440px;
+  margin: 0 auto 124px;
+  padding: 0 120px;
+}
 .carList {
-  max-width: 1440px;  
-    margin: 0 auto; 
-    padding: 0 120px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 48px 32px; 
-margin-bottom: 80px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 32px;
 }

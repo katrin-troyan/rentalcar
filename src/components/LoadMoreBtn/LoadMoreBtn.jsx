@@ -3,26 +3,23 @@ import { fetchCars } from '../../redux/cars/operations';
 import {
   selectCurrentPage,
   selectIsLastPage,
-  selectIsLoadingCars,
 } from '../../redux/cars/selectors';
+import css from './LoadMoreBtn.module.css';
 
 export default function LoadMoreBtn() {
   const dispatch = useDispatch();
-  const currentPage = useSelector(selectCurrentPage);
+  const page = useSelector(selectCurrentPage);
   const isLastPage = useSelector(selectIsLastPage);
-  const isLoading = useSelector(selectIsLoadingCars);
 
-  const handleLoadMore = () => {
-    if (!isLastPage) {
-      dispatch(fetchCars({ page: currentPage + 1 }));
-    }
+  const handleClick = () => {
+    dispatch(fetchCars({ page: page + 1, limit: 12 }));
   };
 
+  if (isLastPage) return null;
+
   return (
-    <div>
-      <button onClick={handleLoadMore} disabled={isLoading || isLastPage}>
-        {isLastPage ? 'No more cars' : 'Load More'}
-      </button>
-    </div>
+    <button type="button" onClick={handleClick} className={css.loadMoreBtn}>
+      Load more
+    </button>
   );
 }

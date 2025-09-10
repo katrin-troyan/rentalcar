@@ -35,7 +35,6 @@ const carsSlice = createSlice({
       .addCase(fetchCars.pending, (state, action) => {
         state.isLoading = true;
         state.error = null;
-  
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -43,10 +42,10 @@ const carsSlice = createSlice({
         state.cars = action.payload.cars;
       } else {
         state.cars = [...state.cars, ...action.payload.cars];
+        state.page = state.page + 1;
       }
       state.totalCars = action.payload.totalCars;
       state.totalPages = action.payload.totalPages;
-      state.page = action.payload.page; 
       state.isLastPage = action.payload.cars.length < 12;
     })
       .addCase(fetchCars.rejected, (state, action) => {

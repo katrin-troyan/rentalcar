@@ -17,22 +17,29 @@ export default function CarList() {
   const isLoading = useSelector(selectIsLoadingCars);
   const error = useSelector(selectCarsError);
 
-useEffect(() => {
+  useEffect(() => {
     if (cars.length === 0) {
       dispatch(fetchCars({ page: 1 }));
     }
-  }, [dispatch]);
+  }, [dispatch, cars.length]);
 
-  if (isLoading) return <p>Loading cars...</p>;
+  if (cars.length === 0 && isLoading) {
+    return <p>Loading cars...</p>;
+  }
   if (error) return <p>Error: {error}</p>;
   if (!cars || cars.length === 0) return <p>No cars found.</p>;
-  
+
   return (
-    <div className={css.carList}>
-      {cars.map(car => (
-        <CarCard key={car.id} car={car} />
-      ))}
-      <LoadMoreBtn />
+    <div className={css.container}>
+      <div className={css.carList}>
+        {cars.map(car => (
+          <CarCard key={car.id} car={car} />
+        ))}
+      </div>
+      <div>
+        <LoadMoreBtn />
+        {isLoading && <p>Loading more cars...</p>}
+      </div>
     </div>
   );
 }

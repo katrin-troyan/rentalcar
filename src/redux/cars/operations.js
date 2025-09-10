@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import apiClient from "../../api/apiClient";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import apiClient from '../../api/apiClient';
 
 export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
@@ -9,9 +9,8 @@ export const fetchCars = createAsyncThunk(
         page,
         limit,
       };
-      console.log('Sending request to:', `/cars?page=${page}&limit=${limit}`);
-      const  data  = await apiClient.get('/cars', { params });
-      return  data;
+      const data = await apiClient.get('/cars', { params });
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -19,11 +18,11 @@ export const fetchCars = createAsyncThunk(
 );
 
 export const fetchCarById = createAsyncThunk(
-  "cars/fetchCarById",
+  'cars/fetchCarById',
   async (id, thunkAPI) => {
     try {
-      const  data  = await apiClient.get(`/cars/${id}`);
-      return data; 
+      const data = await apiClient.get(`/cars/${id}`);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -31,11 +30,11 @@ export const fetchCarById = createAsyncThunk(
 );
 
 export const fetchBrands = createAsyncThunk(
-  "cars/fetchBrands",
+  'cars/fetchBrands',
   async (_, thunkAPI) => {
     try {
-      const brands = await apiClient.get("/brands");
-      return brands; 
+      const brands = await apiClient.get('/brands');
+      return brands;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
