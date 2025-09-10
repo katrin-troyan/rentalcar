@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--color-gray);
+}
+
+.inputsWrapper {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 44px;
+}
+
+.inputGroupR {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--color-gray-light);
+  border-radius: 12px 0 0 12px;
+  width: 160px;
+  height: 44px;
+  background: var(--color-inputs);
+  flex-grow: 1;
+}
+
+.inputGroupL {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--color-gray-light);
+  border-radius: 0 12px 12px 0;
+  width: 160px;
+  height: 44px;
+  background: var(--color-inputs);
+  flex-grow: 1;
+}
+
+.labelInput {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-main);
+  margin: 0 8px 0 24px;
+}
+
+.inputField {
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-main);
+  outline: none;
+}

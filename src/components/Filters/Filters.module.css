@@ -1,8 +1,11 @@
-.filters {
+.container {
+  max-width: 1440px;
+  margin: 0 auto 124px;
+  padding: 0 120px;
   display: flex;
   flex-direction: row;
   gap: 16px;
-  align-items: center;
+  align-items: flex-end;
   padding: 0 258px;
   margin-bottom: 56px;
 }

@@ -41,7 +41,7 @@ export default function Filters() {
   };
 
   return (
-    <div className={css.filters}>
+    <div className={css.container}>
       <BrandSelect value={brand} onChange={b => dispatch(setBrand(b))} />
 
       <PriceSelect value={price} onChange={p => dispatch(setPrice(p))} />

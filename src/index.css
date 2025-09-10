@@ -3,10 +3,11 @@
 --color-main: #101828;
 --color-white: #ffffff;
 --color-gray: #8D929A;
+--color-gray-light:#DADDE1;
 --color-badges: #F2F4F7;
 --color-button: #3470FF;
 --button-hover: #0B44CD;
---color-inputs: #F7F7F7
+--color-inputs: #F7F7F7;
 }
 
 html,

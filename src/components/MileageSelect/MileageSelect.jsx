@@ -4,7 +4,7 @@ import {
   selectMileageTo,
 } from "../../redux/filters/selectors";
 import { setMileageFrom, setMileageTo } from "../../redux/filters/slice";
-
+import css from "./MileageSelect.module.css";
 
 const formatNumber = (value) => {
   if (!value) return "";
@@ -33,24 +33,28 @@ export default function MileageSelect() {
   };
 
   return (
-    <div>
-      <label >Сar mileage / km</label>
-      <div >
-        <span>From</span>
-        <input
-          type="text"
-          value={formatNumber(mileageFrom)}
-          onChange={handleFromChange}
-        />
-      </div>
+    <div className={css.container}>
+      <label className={css.label}>Сar mileage / km</label>
+       <div className={css.inputsWrapper}> 
+        <div className={css.inputGroupR}>
+          <span className={css.labelInput}>From</span>
+          <input
+            type="text"
+            value={formatNumber(mileageFrom)}
+            onChange={handleFromChange}
+            className={css.inputField}
+          />
+        </div>
 
-      <div >
-        <span >To</span>
-        <input
-          type="text"
-          value={formatNumber(mileageTo)}
-          onChange={handleToChange}
-        />
+        <div className={css.inputGroupL}>
+          <span className={css.labelInput}>To</span>
+          <input
+            type="text"
+            value={formatNumber(mileageTo)}
+            onChange={handleToChange}
+            className={css.inputField}
+          />
+        </div>
       </div>
     </div>
   );
