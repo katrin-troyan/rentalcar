@@ -7,9 +7,10 @@ import {
   selectIsLoadingCarDetails,
   selectCarDetailsError,
 } from '../../redux/cars/selectors.js';
-import CarImg from '../../components/CarImg/CarImg.jsx';
+
 import CarInfo from '../../components/CarInfo/CarInfo.jsx';
-//import BookingForm from '../../components/BookingForm/BookingForm.jsx';
+import BookingForm from '../../components/BookingForm/BookingForm.jsx';
+import css from './CarDetails.module.css';
 
 export default function CarDetailsPage() {
   const { id } = useParams();
@@ -28,10 +29,9 @@ export default function CarDetailsPage() {
   if (!car) return <p>No car found</p>;
 
   return (
-    <div>
-      <CarImg car={car} />
+    <div className={css.container}>
+      <BookingForm />
       <CarInfo car={car} />
- 
     </div>
   );
 }
