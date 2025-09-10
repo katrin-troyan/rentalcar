@@ -1,0 +1,84 @@
+.container {
+  max-width: 488px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.titleHeader {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--color-main);
+  margin: 0 0 8px;
+}
+.span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-gray);
+  margin-left: 16px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+.text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-main);
+}
+.textMileage {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--color-main);
+  margin-left: 16px;
+}
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--color-button);
+  margin-bottom: 32px;
+}
+.sectionWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 772px;
+  margin-top: 68px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: flex-end;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  justify-self: flex-end;
+}
+.iconLocation {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
