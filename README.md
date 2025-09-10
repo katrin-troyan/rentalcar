@@ -16,11 +16,14 @@ RentalCar is a web application for car rentals that allows users to browse avail
    git clone https://github.com/katrin-troyan/rentalcar
 
 2. Navigate to the project folder:
+    ```bash
     cd rentalcar
 
 3. Install dependencies:
+    ```bash
     npm install
 4. Start the development server:
+    ```bash
     npm run dev
 
 ## Usage
