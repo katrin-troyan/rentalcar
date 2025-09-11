@@ -1,4 +1,3 @@
-// hooks/useFilters.js
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,8 +13,12 @@ import {
   setMileageTo,
 } from '../redux/filters/slice';
 import { fetchCars, fetchBrands } from '../redux/cars/operations';
-import { selectBrands } from '../redux/cars/selectors';
-import { clearCars } from '../redux/cars/slice';
+import {
+  selectBrands,
+  selectIsLoadingCars,
+  selectCars,
+} from '../redux/cars/selectors';
+import { toast } from 'react-toastify';
 
 export function useFilters() {
   const dispatch = useDispatch();
@@ -25,24 +28,27 @@ export function useFilters() {
   const mileageFrom = useSelector(selectMileageFrom);
   const mileageTo = useSelector(selectMileageTo);
   const brands = useSelector(selectBrands);
+  const isLoading = useSelector(selectIsLoadingCars);
+  const cars = useSelector(selectCars);
 
   useEffect(() => {
     dispatch(fetchBrands());
   }, [dispatch]);
 
-  const handleClear = () => {
-    dispatch(setBrand(''));
-    dispatch(setPrice(''));
-    dispatch(setMileageFrom(''));
-    dispatch(setMileageTo(''));
-  };
+  useEffect(() => {
+    if (
+      !isLoading &&
+      cars.length === 0 &&
+      (brand || price || mileageFrom || mileageTo)
+    ) {
+      toast.warn('No cars were found for your request.');
+    }
+  }, [isLoading, cars, brand, price, mileageFrom, mileageTo]);
 
   const handleSearch = () => {
-    dispatch(clearCars());
     dispatch(
       fetchCars({ brand, price, mileageFrom, mileageTo, page: 1, limit: 12 })
     );
-    handleClear();
   };
 
   return {

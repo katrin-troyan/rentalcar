@@ -25,12 +25,12 @@ const carsSlice = createSlice({
   name: 'cars',
   initialState,
   reducers: {
-    clearCars(state) {
-      state.cars = [];
-      state.page = 1;
-      state.isLastPage = false;
-      state.error = null;
-    },
+    resetCars: (state) => {
+    state.cars = [];
+  state.page = 1;        // <--- додай
+  state.isLastPage = false; // <--- обовʼязково
+  state.hasFilter = false;
+  },
   },
   extraReducers: builder => {
     builder
@@ -92,5 +92,5 @@ const carsSlice = createSlice({
   },
 });
 
-export const { clearCars } = carsSlice.actions;
+export const { resetCars } = carsSlice.actions;
 export default carsSlice.reducer;

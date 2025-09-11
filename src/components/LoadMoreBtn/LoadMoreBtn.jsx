@@ -12,7 +12,11 @@ export default function LoadMoreBtn() {
   const isLastPage = useSelector(selectIsLastPage);
 
   const handleClick = () => {
-    dispatch(fetchCars({ page: page + 1, limit: 12 }));
+    const scrollY = window.scrollY; 
+    dispatch(fetchCars({ page: page + 1, limit: 12 }))
+      .then(() => {
+        window.scrollTo({ top: scrollY, behavior: "instant" }); 
+      });
   };
 
   if (isLastPage) return null;
